@@ -64,6 +64,8 @@ section .lead{margin-top:10px}
 .chip .x{color:var(--ok)}
 .qualifier{background:var(--pri-bg);border-radius:12px;padding:18px 20px;color:var(--pri-ink);font-size:14px}
 .qualifier b{display:block;margin-bottom:4px;font-size:15px}
+.noqual{background:#fdf0ee;border-radius:12px;padding:18px 20px;color:#8a2c20;font-size:14px;margin-top:14px}
+.noqual b{display:block;margin-bottom:4px;font-size:15px}
 
 /* servicios */
 .grid4{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
@@ -107,6 +109,13 @@ section .lead{margin-top:10px}
 .typing i:nth-child(2){animation-delay:.15s}.typing i:nth-child(3){animation-delay:.3s}
 @keyframes bl{0%,80%,100%{opacity:.3}40%{opacity:1}}
 .demo-foot{padding:0 24px 22px;font-size:12.5px;color:var(--mut2)}
+.ad-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:24px}
+@media (max-width:620px){.ad-row{grid-template-columns:1fr}}
+.ad-card{border-radius:14px;padding:18px 20px}
+.ad-card.antes{background:#fdf0ee;color:#8a2c20}
+.ad-card.despues{background:var(--ok-bg);color:#15532f}
+.ad-card .tag2{font-size:11.5px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;opacity:.75}
+.ad-card p{margin:6px 0 0;font-size:14.5px;font-weight:600}
 
 /* cotizacion */
 .cot-box{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:28px;display:grid;grid-template-columns:1fr 1fr;gap:28px}
@@ -186,9 +195,15 @@ footer a:hover{color:var(--pri)}
           <span class="chip"><span class="x">✔</span> Pymes con sistema ISO (9001/14001/45001)</span>
         </div>
       </div>
-      <div class="qualifier">
-        <b>No hace falta que sepas de tecnología.</b>
-        Vos conocés tu negocio; nosotros traducimos eso en un sistema que trabaja solo. Si usás WhatsApp, Excel o algún sistema propio, se puede conectar. Si todavía no tenés nada armado, también.
+      <div>
+        <div class="qualifier">
+          <b>No hace falta que sepas de tecnología.</b>
+          Vos conocés tu negocio; nosotros traducimos eso en un sistema que trabaja solo. Si usás WhatsApp, Excel o algún sistema propio, se puede conectar. Si todavía no tenés nada armado, también.
+        </div>
+        <div class="noqual">
+          <b>Dónde todavía no encajamos</b>
+          Si buscás una app gigante tipo Mercado Libre, un desarrollo con equipo propio de varias personas, o algo que ya tenés 100% resuelto y solo querés "un toque de IA" sin tocar nada del proceso, probablemente no seamos el mejor fit. Igual te lo decimos en la reunión, sin vueltas.
+        </div>
       </div>
     </div>
   </div>
@@ -241,6 +256,7 @@ footer a:hover{color:var(--pri)}
     <div class="section-head">
       <p class="eyebrow">Cómo trabajamos</p>
       <h2>De la idea a algo que usás, en cuatro pasos</h2>
+      <p class="lead">Una automatización puntual puede estar funcionando en pocos días; una aplicación a medida lleva más. El plazo exacto te lo damos junto con el presupuesto, después de ver tu caso.</p>
     </div>
     <div class="steps">
       <div class="step"><div class="n">1</div><h3>Reunión de 20 minutos</h3><p>Contás cómo trabajás hoy y qué te está consumiendo tiempo. Sin tecnicismos.</p></div>
@@ -257,6 +273,10 @@ footer a:hover{color:var(--pri)}
       <p class="eyebrow">Probalo vos mismo</p>
       <h2>Así responde un agente de atención al cliente</h2>
       <p class="lead">Elegí el rubro que más se parece a tu negocio y una pregunta típica de un cliente. Es una demostración con respuestas de ejemplo, para que veas el estilo de conversación — el agente real se entrena con tu información.</p>
+    </div>
+    <div class="ad-row">
+      <div class="ad-card antes"><div class="tag2">Antes</div><p>El cliente escribe a las 21 hs, nadie contesta hasta el otro día. El turno se agenda a mano, en una libreta o en la cabeza. El reporte del mes se arma a último momento, juntando todo a mano.</p></div>
+      <div class="ad-card despues"><div class="tag2">Después</div><p>El agente responde al instante, cualquier hora. El turno queda agendado y confirmado solo. El reporte llega armado a tu mail, sin que nadie se siente a hacerlo.</p></div>
     </div>
     <div class="demo-box">
       <div class="demo-top">
@@ -310,6 +330,7 @@ footer a:hover{color:var(--pri)}
       <details><summary>¿Cuánto tarda en estar funcionando?</summary><p>Depende del alcance: una automatización puntual puede estar lista en pocos días; una aplicación a medida lleva más. Te damos un plazo concreto junto con el presupuesto.</p></details>
       <details><summary>¿Qué pasa con la información de mis clientes?</summary><p>Se usa solo para que el sistema funcione, no se comparte ni se vende. Si tu rubro tiene requisitos particulares de privacidad, lo conversamos en la reunión.</p></details>
       <details><summary>¿Si ya tengo algo armado, lo pueden integrar?</summary><p>Sí. La idea no es tirar abajo lo que ya usás, sino conectarlo o mejorarlo con IA.</p></details>
+      <details><summary>¿Y si no anda como esperaba?</summary><p>Antes de entregarlo lo probamos juntos, así que no te llevás algo "a ciegas". Si después de implementado algo no funciona como se acordó, lo ajustamos sin costo extra dentro del período de acompañamiento. No te dejamos solo con algo roto.</p></details>
     </div>
   </div>
 </section>
