@@ -1,0 +1,445 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>S&amp;S Automatización con IA</title>
+<meta name="description" content="S&S automatiza la atención al cliente, los turnos, los reportes y los procesos de tu Pyme con IA. Mirá la demo y agendá 20 minutos.">
+<style>
+:root{
+  --ink:#16202c; --mut:#5c6b7a; --mut2:#8a97a3; --line:#e3e8ee; --bg:#f6f8fb; --card:#fff;
+  --pri:#1f6feb; --pri-ink:#0c3a86; --pri-bg:#eaf2ff;
+  --ok:#1a8a4a; --ok-bg:#e4f6ec;
+  --warn:#b7791f; --warn-bg:#fdf3e0;
+  --wa:#25d366; --wa-bg:#e7fbee;
+  --radius:16px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font:16px/1.55 system-ui,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--ink)}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+img,svg{max-width:100%}
+a{color:inherit}
+h1,h2,h3{line-height:1.2;margin:0}
+.eyebrow{color:var(--pri);font-weight:700;font-size:13px;letter-spacing:.06em;text-transform:uppercase;margin:0 0 8px}
+.lead{color:var(--mut);font-size:17px;max-width:640px}
+.btn{display:inline-flex;align-items:center;gap:8px;border:0;border-radius:999px;padding:14px 24px;font:inherit;font-weight:700;font-size:15px;cursor:pointer;text-decoration:none;white-space:nowrap}
+.btn.pri{background:var(--pri);color:#fff;box-shadow:0 10px 24px -8px rgba(31,111,235,.55)}
+.btn.pri:hover{background:var(--pri-ink)}
+.btn.sec{background:#fff;color:var(--ink);border:1.5px solid var(--line)}
+.btn.sec:hover{border-color:var(--pri);color:var(--pri)}
+.btn.sm{padding:9px 16px;font-size:13px}
+.pill{display:inline-block;padding:5px 12px;border-radius:999px;font-size:13px;font-weight:600;background:var(--pri-bg);color:var(--pri-ink)}
+
+/* ---- Nav ---- */
+header.nav{position:sticky;top:0;z-index:20;background:rgba(246,248,251,.9);backdrop-filter:saturate(180%) blur(10px);border-bottom:1px solid var(--line)}
+.nav-row{display:flex;align-items:center;gap:18px;padding:14px 20px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:18px;text-decoration:none;color:var(--ink)}
+.brand .mark{width:34px;height:34px;border-radius:10px;background:linear-gradient(135deg,var(--pri),#5aa0ff);color:#fff;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:800}
+.nav-links{display:flex;gap:22px;margin-left:auto;font-size:14px;font-weight:600;color:var(--mut)}
+.nav-links a{text-decoration:none}
+.nav-links a:hover{color:var(--pri)}
+@media (max-width:760px){.nav-links{display:none}}
+
+/* ---- Hero ---- */
+.hero{padding:64px 0 48px}
+.hero h1{font-size:44px;max-width:760px}
+.hero h1 span{color:var(--pri)}
+.hero .cta-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+.hero .trust{margin-top:18px;color:var(--mut2);font-size:13px}
+@media (max-width:600px){.hero h1{font-size:30px}}
+
+/* ---- Sections ---- */
+section{padding:56px 0}
+section h2{font-size:28px;max-width:620px}
+section .lead{margin-top:10px}
+.section-head{margin-bottom:32px}
+@media (max-width:600px){section h2{font-size:23px}}
+
+/* rubros qualifier */
+.rubros-box{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:28px;display:grid;grid-template-columns:1.1fr 1fr;gap:28px;align-items:center}
+@media (max-width:760px){.rubros-box{grid-template-columns:1fr}}
+.chiplist{display:flex;flex-wrap:wrap;gap:10px}
+.chip{display:flex;align-items:center;gap:8px;background:var(--ok-bg);color:#15532f;border-radius:999px;padding:9px 14px;font-size:14px;font-weight:600}
+.chip .x{color:var(--ok)}
+.qualifier{background:var(--pri-bg);border-radius:12px;padding:18px 20px;color:var(--pri-ink);font-size:14px}
+.qualifier b{display:block;margin-bottom:4px;font-size:15px}
+
+/* servicios */
+.grid4{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+@media (max-width:900px){.grid4{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:560px){.grid4{grid-template-columns:1fr}}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:22px}
+.card .ic{width:44px;height:44px;border-radius:12px;background:var(--pri-bg);display:flex;align-items:center;justify-content:center;font-size:21px;margin-bottom:14px}
+.card h3{font-size:16px;margin-bottom:6px}
+.card p{color:var(--mut);font-size:14px;margin:0}
+.card .deliver{margin-top:12px;font-size:12.5px;color:var(--pri-ink);background:var(--pri-bg);border-radius:8px;padding:8px 10px;font-weight:600}
+
+/* como trabajamos */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:0;counter-reset:step}
+@media (max-width:900px){.steps{grid-template-columns:1fr 1fr}}
+@media (max-width:560px){.steps{grid-template-columns:1fr}}
+.step{position:relative;padding:0 16px 0 0}
+.step .n{width:34px;height:34px;border-radius:50%;background:var(--pri);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:14px;margin-bottom:14px}
+.step h3{font-size:15px;margin-bottom:6px}
+.step p{color:var(--mut);font-size:13.5px;margin:0}
+
+/* demo */
+.demo-box{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+.demo-top{padding:22px 24px 0}
+.demo-note{font-size:13px;color:var(--mut2);margin:0 0 18px}
+.seg{display:flex;gap:8px;flex-wrap:wrap;padding:0 24px 18px}
+.seg button{border:1.5px solid var(--line);background:#fff;border-radius:999px;padding:9px 15px;font:inherit;font-size:13.5px;font-weight:600;color:var(--mut);cursor:pointer}
+.seg button.on{background:var(--pri);border-color:var(--pri);color:#fff}
+.chips2{display:flex;gap:8px;flex-wrap:wrap;padding:0 24px 20px}
+.chips2 button{border:1px dashed var(--line);background:#fbfcfe;border-radius:10px;padding:9px 13px;font:inherit;font-size:13px;color:var(--ink);cursor:pointer;text-align:left}
+.chips2 button:hover{border-color:var(--pri);color:var(--pri)}
+.phone{background:#0b141a;padding:0 0 10px;margin:0 24px 24px;border-radius:20px;overflow:hidden;box-shadow:inset 0 0 0 1px #000}
+.phone-head{background:#1f2c34;color:#fff;padding:12px 16px;display:flex;align-items:center;gap:10px;font-size:13px}
+.phone-head .av{width:30px;height:30px;border-radius:50%;background:var(--wa);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:12px}
+.chat{min-height:230px;max-height:340px;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:10px;background:#0b141a url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2240%22 height=%2240%22><rect width=%2240%22 height=%2240%22 fill=%22%230b141a%22/></svg>')}
+.bub{max-width:80%;padding:10px 13px;border-radius:12px;font-size:14px;line-height:1.4}
+.bub.in{background:#202c33;color:#e9edef;align-self:flex-start;border-bottom-left-radius:3px}
+.bub.out{background:#005c4b;color:#e9edef;align-self:flex-end;border-bottom-right-radius:3px}
+.bub.tag{align-self:center;background:#182229;color:#8696a0;font-size:11.5px;padding:6px 12px;border-radius:999px}
+.typing{align-self:flex-start;background:#202c33;border-radius:12px;padding:10px 14px;display:flex;gap:4px}
+.typing i{width:6px;height:6px;border-radius:50%;background:#8696a0;display:inline-block;animation:bl 1s infinite ease-in-out}
+.typing i:nth-child(2){animation-delay:.15s}.typing i:nth-child(3){animation-delay:.3s}
+@keyframes bl{0%,80%,100%{opacity:.3}40%{opacity:1}}
+.demo-foot{padding:0 24px 22px;font-size:12.5px;color:var(--mut2)}
+
+/* cotizacion */
+.cot-box{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:28px;display:grid;grid-template-columns:1fr 1fr;gap:28px}
+@media (max-width:760px){.cot-box{grid-template-columns:1fr}}
+.cot-box ul{margin:0;padding-left:20px;color:var(--mut);font-size:14.5px}
+.cot-box li{margin-bottom:10px}
+.no-price{background:var(--warn-bg);color:#6b4a0a;border-radius:12px;padding:16px 18px;font-size:14px;font-weight:600}
+
+/* faq */
+.faq{border-top:1px solid var(--line)}
+.faq details{border-bottom:1px solid var(--line);padding:16px 0}
+.faq summary{cursor:pointer;font-weight:700;font-size:15.5px;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";font-size:20px;color:var(--pri);font-weight:400}
+.faq details[open] summary::after{content:"–"}
+.faq p{color:var(--mut);margin:10px 0 0;font-size:14.5px}
+
+/* cta final */
+.cta-final{background:linear-gradient(135deg,var(--pri),#1a56c4);border-radius:24px;padding:48px 36px;text-align:center;color:#fff}
+.cta-final h2{color:#fff;font-size:28px;max-width:none}
+.cta-final p{color:#dce9ff;max-width:520px;margin:10px auto 26px}
+.cta-final .btn.pri{background:#fff;color:var(--pri-ink);box-shadow:none}
+.cta-final .btn.pri:hover{background:#eef4ff}
+.cta-final .btn-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.btn.wa{background:var(--wa);color:#fff}
+.btn.wa:hover{background:#1fb858}
+
+footer{padding:36px 0 60px;color:var(--mut2);font-size:13px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+footer a{color:var(--mut2);text-decoration:none}
+footer a:hover{color:var(--pri)}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap nav-row">
+    <a class="brand" href="#top"><span class="mark">S&amp;S</span> S&amp;S Automatización con IA</a>
+    <nav class="nav-links">
+      <a href="#servicios">Qué hacemos</a>
+      <a href="#como-trabajamos">Cómo trabajamos</a>
+      <a href="#demo">Demo</a>
+      <a href="#cotizacion">Cómo se cotiza</a>
+      <a href="#faq">Preguntas</a>
+    </nav>
+    <a class="btn pri sm" href="#cta">Agendar 20 min</a>
+  </div>
+</header>
+
+<main id="top">
+
+<section class="hero">
+  <div class="wrap">
+    <p class="eyebrow">IA aplicada, para negocios reales</p>
+    <h1>Automatizamos la atención, los turnos y los reportes de tu Pyme <span>con IA</span>, sin que dejes de ser vos quien decide.</h1>
+    <p class="lead">S&amp;S arma soluciones de inteligencia artificial a medida: atención al cliente automática, sistemas de turnos, reportes que se arman solos, procesos que hoy hacés a mano y aplicaciones propias cuando lo que necesitás no existe todavía.</p>
+    <div class="cta-row">
+      <a class="btn pri" href="#cta">Agendar 20 minutos</a>
+      <a class="btn sec" href="#demo">Ver la demo</a>
+    </div>
+    <p class="trust">Sin compromiso. En la reunión vemos tu caso puntual y armamos un presupuesto a medida.</p>
+  </div>
+</section>
+
+<section id="rubros">
+  <div class="wrap">
+    <div class="rubros-box">
+      <div>
+        <p class="eyebrow">¿Es para tu negocio?</p>
+        <h2 style="font-size:22px">Si atendés clientes, sacás turnos o armás reportes a mano, esto es para vos.</h2>
+        <div class="chiplist" style="margin-top:18px">
+          <span class="chip"><span class="x">✔</span> Comercios y tiendas</span>
+          <span class="chip"><span class="x">✔</span> Talleres y service</span>
+          <span class="chip"><span class="x">✔</span> Estudios profesionales</span>
+          <span class="chip"><span class="x">✔</span> Salud y estética</span>
+          <span class="chip"><span class="x">✔</span> Gastronomía</span>
+          <span class="chip"><span class="x">✔</span> Inmobiliarias</span>
+          <span class="chip"><span class="x">✔</span> Pymes con sistema ISO (9001/14001/45001)</span>
+        </div>
+      </div>
+      <div class="qualifier">
+        <b>No hace falta que sepas de tecnología.</b>
+        Vos conocés tu negocio; nosotros traducimos eso en un sistema que trabaja solo. Si usás WhatsApp, Excel o algún sistema propio, se puede conectar. Si todavía no tenés nada armado, también.
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="servicios">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Qué te entregamos</p>
+      <h2>Cinco formas de sacarte trabajo de encima</h2>
+      <p class="lead">No vendemos "inteligencia artificial" en abstracto: entregamos algo concreto, que usás desde el primer día.</p>
+    </div>
+    <div class="grid4">
+      <div class="card">
+        <div class="ic">💬</div>
+        <h3>Atención al cliente</h3>
+        <p>Un agente que responde WhatsApp o chat las 24 horas: horarios, disponibilidad, preguntas frecuentes, y deriva a una persona cuando hace falta.</p>
+        <div class="deliver">Te entrego: el agente configurado y conectado a tu WhatsApp o web.</div>
+      </div>
+      <div class="card">
+        <div class="ic">📅</div>
+        <h3>Turnos y reservas</h3>
+        <p>Un turnero que agenda, confirma y recuerda citas sin que nadie tenga que estar pendiente del calendario.</p>
+        <div class="deliver">Te entrego: el sistema de turnos funcionando y los recordatorios automáticos.</div>
+      </div>
+      <div class="card">
+        <div class="ic">📊</div>
+        <h3>Reportes con IA</h3>
+        <p>Informes de ventas, caja o actividad que se arman solos a partir de tus datos, en el formato que vos necesites leer.</p>
+        <div class="deliver">Te entrego: el reporte automático, con la frecuencia que definamos.</div>
+      </div>
+      <div class="card">
+        <div class="ic">⚙️</div>
+        <h3>Procesos y apps a medida</h3>
+        <p>Si hay una tarea repetitiva que hacés a mano, o necesitás algo que no existe en el mercado, lo armamos puntual para vos.</p>
+        <div class="deliver">Te entrego: la automatización o la aplicación, lista para usar.</div>
+      </div>
+      <div class="card">
+        <div class="ic">📋</div>
+        <h3>Sistemas de gestión integrados</h3>
+        <p>Automatizamos la documentación y el seguimiento de tu sistema de gestión ISO 9001 (calidad), ISO 14001 (ambiente) e ISO 45001 (seguridad y salud laboral): registros, vencimientos, no conformidades y auditorías.</p>
+        <div class="deliver">Te entrego: el sistema funcionando, con alertas de vencimientos y documentación ordenada.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="como-trabajamos" style="background:var(--card);border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Cómo trabajamos</p>
+      <h2>De la idea a algo que usás, en cuatro pasos</h2>
+    </div>
+    <div class="steps">
+      <div class="step"><div class="n">1</div><h3>Reunión de 20 minutos</h3><p>Contás cómo trabajás hoy y qué te está consumiendo tiempo. Sin tecnicismos.</p></div>
+      <div class="step"><div class="n">2</div><h3>Propuesta y demo a medida</h3><p>Te mostramos cómo quedaría funcionando en tu caso puntual, antes de avanzar.</p></div>
+      <div class="step"><div class="n">3</div><h3>Desarrollo e implementación</h3><p>Armamos la solución y la conectamos a lo que ya usás.</p></div>
+      <div class="step"><div class="n">4</div><h3>Acompañamiento</h3><p>Te dejamos la guía para manejarlo, y seguimos disponibles si algo hay que ajustar.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="demo">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Probalo vos mismo</p>
+      <h2>Así responde un agente de atención al cliente</h2>
+      <p class="lead">Elegí el rubro que más se parece a tu negocio y una pregunta típica de un cliente. Es una demostración con respuestas de ejemplo, para que veas el estilo de conversación — el agente real se entrena con tu información.</p>
+    </div>
+    <div class="demo-box">
+      <div class="demo-top">
+        <p class="demo-note">1. Elegí el rubro</p>
+      </div>
+      <div class="seg" id="segRubro"></div>
+      <p class="demo-note" style="padding:0 24px">2. Elegí una pregunta de cliente</p>
+      <div class="chips2" id="segPreg"></div>
+      <div class="phone">
+        <div class="phone-head"><div class="av" id="avName">?</div><div><b id="phoneTitle">Agente S&amp;S</b><div style="font-size:11px;color:#8696a0">en línea</div></div></div>
+        <div class="chat" id="chat"></div>
+      </div>
+      <p class="demo-foot">💡 En la versión real, el agente también entiende preguntas escritas libremente, no solo las opciones de arriba.</p>
+    </div>
+  </div>
+</section>
+
+<section id="cotizacion">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Cómo se cotiza</p>
+      <h2>El presupuesto se arma después de la demo, a medida</h2>
+    </div>
+    <div class="cot-box">
+      <div>
+        <p class="lead" style="margin-top:0">No tenemos un catálogo de precios fijo, porque cada negocio necesita algo distinto. El presupuesto depende de:</p>
+        <ul>
+          <li><b>El volumen:</b> cuántas conversaciones, turnos o reportes maneja tu negocio por mes.</li>
+          <li><b>Las integraciones:</b> si hay que conectar con un sistema, planilla o turnero que ya usás.</li>
+          <li><b>El alcance:</b> si es una automatización puntual o una aplicación nueva, hecha de cero.</li>
+          <li><b>El acompañamiento:</b> el nivel de soporte y ajustes que necesitás después de la entrega.</li>
+        </ul>
+      </div>
+      <div class="no-price">
+        💰 El número se habla recién en la reunión, una vez que vimos juntos tu caso y qué parte de la demo aplica a tu negocio. Así el presupuesto es real, no una estimación genérica.
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="faq" style="background:var(--card);border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Preguntas frecuentes</p>
+      <h2>Las dudas más comunes antes de agendar</h2>
+    </div>
+    <div class="faq">
+      <details open><summary>¿Esto sirve para mi rubro?</summary><p>Si tu negocio atiende clientes, agenda turnos o arma reportes repetitivos, casi seguro que sí. Lo vemos puntual en la reunión de 20 minutos.</p></details>
+      <details><summary>¿Necesito saber de tecnología?</summary><p>No. Vos explicás cómo trabajás hoy, y nosotros armamos la solución. Te dejamos todo explicado en un lenguaje simple.</p></details>
+      <details><summary>¿Qué necesito tener de mi lado?</summary><p>Depende del servicio: para atención al cliente alcanza con tu WhatsApp o tu página; para reportes, el lugar donde hoy guardás los datos (aunque sea una planilla). Si no tenés nada armado, lo vemos en la reunión.</p></details>
+      <details><summary>¿Cuánto tarda en estar funcionando?</summary><p>Depende del alcance: una automatización puntual puede estar lista en pocos días; una aplicación a medida lleva más. Te damos un plazo concreto junto con el presupuesto.</p></details>
+      <details><summary>¿Qué pasa con la información de mis clientes?</summary><p>Se usa solo para que el sistema funcione, no se comparte ni se vende. Si tu rubro tiene requisitos particulares de privacidad, lo conversamos en la reunión.</p></details>
+      <details><summary>¿Si ya tengo algo armado, lo pueden integrar?</summary><p>Sí. La idea no es tirar abajo lo que ya usás, sino conectarlo o mejorarlo con IA.</p></details>
+    </div>
+  </div>
+</section>
+
+<section id="cta">
+  <div class="wrap">
+    <div class="cta-final">
+      <h2>¿Charlamos 20 minutos sobre tu negocio?</h2>
+      <p>Sin compromiso. Contás cómo trabajás hoy, vemos qué parte de esto te sirve y, si avanzamos, ahí sale el presupuesto.</p>
+      <div class="btn-row">
+        <a class="btn wa" id="waBtn" href="#" target="_blank" rel="noopener">💬 Agendar por WhatsApp</a>
+        <a class="btn pri" id="mailBtn" href="#">✉️ Agendar por mail</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="wrap">
+  <span>© <span id="yr"></span> S&amp;S Automatización con IA</span>
+  <span><a href="#top">Volver arriba ↑</a></span>
+</footer>
+
+<script>
+document.getElementById("yr").textContent = new Date().getFullYear();
+
+/* mailto con asunto y cuerpo precargado, a dos casillas */
+(function(){
+  const to = "tauxsilvana@gmail.com,selenegomez2007@gmail.com";
+  const subject = "Quiero agendar 20 minutos con S&S";
+  const body = "Hola! Vi la demo de S&S y quiero coordinar una reunión de 20 minutos.\n\nNombre del negocio: \nRubro: \nQué necesito resolver: \nDisponibilidad horaria: ";
+  const url = "mailto:" + to + "?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
+  document.getElementById("mailBtn").href = url;
+})();
+
+/* WhatsApp con mensaje precargado */
+(function(){
+  const numero = "5492994238063";
+  const msg = "Hola! Vi la página de S&S y quiero agendar 20 minutos para contarles sobre mi negocio.";
+  const url = "https://wa.me/" + numero + "?text=" + encodeURIComponent(msg);
+  document.getElementById("waBtn").href = url;
+})();
+
+/* ---- Demo interactiva ---- */
+const RUBROS = [
+  {id:"taller", label:"Taller mecánico", icon:"🔧", nombre:"Taller Don Carlos"},
+  {id:"comercio", label:"Comercio / tienda", icon:"🛍️", nombre:"Tienda Luna"},
+  {id:"estudio", label:"Estudio profesional", icon:"📁", nombre:"Estudio Rivas & Asoc."},
+  {id:"salud", label:"Salud y estética", icon:"💆", nombre:"Centro Bienestar"}
+];
+
+const PREGUNTAS = [
+  {id:"horario", label:"¿Atienden los sábados?"},
+  {id:"turno", label:"Quiero sacar un turno"},
+  {id:"precio", label:"¿Cuánto sale?"},
+  {id:"reporte", label:"Pasame el reporte del mes"}
+];
+
+const RESP = {
+  taller: {
+    horario: ["Sí, atendemos sábados de 9 a 13 hs. De lunes a viernes de 8 a 18 hs.", "¿Querés que te reserve un turno para este sábado?"],
+    turno: ["Tengo lugar el jueves 10 hs o el viernes 16 hs para revisar tu auto.", "¿Cuál te queda mejor? Te mando la confirmación por acá."],
+    precio: ["El costo depende de lo que necesite el vehículo, así que prefiero que lo vea un mecánico primero.", "Te paso con Carlos para que te confirme el presupuesto exacto 👨‍🔧"],
+    reporte: ["📊 Reporte de octubre (ejemplo):\n• 34 services realizados\n• 12 clientes nuevos\n• Ticket promedio: dato de ejemplo\n\nTe lo mando por mail todos los lunes."]
+  },
+  comercio: {
+    horario: ["Abrimos de lunes a sábado de 10 a 20 hs, domingos cerrado.", "¿Buscabas algo puntual? Te puedo contar si tenemos stock."],
+    turno: ["Para este local no hacen falta turnos, pero si es para probador podés reservar franja horaria.", "¿Querés que te separe un horario sin espera?"],
+    precio: ["Los precios varían según el producto y la promo vigente, mejor que te los confirme alguien del local.", "Te derivo con un vendedor para que te pase el precio exacto 🛍️"],
+    reporte: ["📊 Reporte semanal (ejemplo):\n• 128 consultas por WhatsApp\n• 41 ventas cerradas\n• Producto más consultado: dato de ejemplo\n\nSe arma solo cada lunes a la mañana."]
+  },
+  estudio: {
+    horario: ["Atendemos de lunes a viernes de 9 a 17 hs, con reunión previa agendada.", "¿Te coordino una reunión esta semana?"],
+    turno: ["Tengo disponible el martes 11 hs o el miércoles 15 hs para una consulta inicial.", "¿Preferís presencial o por videollamada?"],
+    precio: ["Los honorarios dependen del tipo de trámite o consulta, así que lo vemos en la reunión inicial.", "Te agendo con el estudio para que te den el detalle 📋"],
+    reporte: ["📊 Resumen mensual (ejemplo):\n• 18 consultas atendidas\n• 6 expedientes en curso\n• Vencimientos próximos: 3\n\nLlega a tu mail el primer día hábil de cada mes."]
+  },
+  salud: {
+    horario: ["Atendemos de martes a sábado de 10 a 19 hs.", "¿Querés que te muestre los turnos disponibles de esta semana?"],
+    turno: ["Hay lugar mañana 14 hs o el jueves 17 hs.", "Te mando un recordatorio un día antes para que no te lo olvides 💆"],
+    precio: ["El valor depende del tratamiento, por eso prefiero que te lo confirme la profesional.", "Te paso el contacto para que te cuente el detalle y el valor 💬"],
+    reporte: ["📊 Reporte del mes (ejemplo):\n• 52 turnos realizados\n• 7 clientas nuevas\n• Tratamiento más pedido: dato de ejemplo\n\nSe genera solo, sin que nadie lo arme a mano."]
+  }
+};
+
+let curRubro = "taller", curPreg = "horario";
+
+function renderSeg(){
+  const seg = document.getElementById("segRubro");
+  seg.innerHTML = RUBROS.map(r => `<button data-id="${r.id}" class="${r.id===curRubro?'on':''}">${r.icon} ${r.label}</button>`).join("");
+  seg.querySelectorAll("button").forEach(b => b.onclick = () => { curRubro = b.dataset.id; renderSeg(); renderPreg(); runDemo(); });
+
+  const pg = document.getElementById("segPreg");
+  pg.innerHTML = PREGUNTAS.map(p => `<button data-id="${p.id}">${p.label}</button>`).join("");
+  pg.querySelectorAll("button").forEach(b => b.onclick = () => { curPreg = b.dataset.id; runDemo(); });
+}
+function renderPreg(){} // placeholder, re-render handled in renderSeg
+
+function runDemo(){
+  const rub = RUBROS.find(r => r.id === curRubro);
+  const preg = PREGUNTAS.find(p => p.id === curPreg);
+  document.getElementById("avName").textContent = rub.icon;
+  document.getElementById("phoneTitle").textContent = rub.nombre + " · Agente S&S";
+  const chat = document.getElementById("chat");
+  chat.innerHTML = `<div class="bub tag">Hoy</div><div class="bub out">${preg.label}</div>`;
+  const typing = document.createElement("div");
+  typing.className = "typing";
+  typing.innerHTML = "<i></i><i></i><i></i>";
+  chat.appendChild(typing);
+  chat.scrollTop = chat.scrollHeight;
+  setTimeout(() => {
+    typing.remove();
+    const lines = RESP[curRubro][curPreg];
+    lines.forEach((l, i) => {
+      setTimeout(() => {
+        const b = document.createElement("div");
+        b.className = "bub in";
+        b.style.whiteSpace = "pre-line";
+        b.textContent = l;
+        chat.appendChild(b);
+        chat.scrollTop = chat.scrollHeight;
+      }, i * 550);
+    });
+  }, 700);
+}
+
+renderSeg();
+runDemo();
+</script>
+
+</body>
+</html>
